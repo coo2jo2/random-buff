@@ -23,7 +23,6 @@
             padding: 20px; display: flex; flex-direction: column; align-items: center; 
         }
 
-        /* 등급별 테두리 색상 */
         .로얄-레전드 { border-color: #f1c40f; box-shadow: 0 0 15px rgba(241, 196, 15, 0.6); background: linear-gradient(145deg, #2c2c2c, #3d3515); } 
         .레전드 { border-color: #00FFCA; }
         .에픽 { border-color: #a29bfe; }
@@ -45,7 +44,7 @@
         const cards = [
             { id: 1, grade: "레전드", name: "매화의 축복", effect: "선달로 매화단청 쿠키를 확정으로 씁니다. 원치 않을 경우, 쿠키 리롤 15개로 교환이 가능합니다." },
             { id: 2, grade: "레전드", name: "점수가 더블!", effect: "이번 판 총 점수가 2배 증폭됩니다." },
-            { id: 3, grade: "에픽", name: "약한 친구들도 모이면 강해지지!", effect: "C~A 등급 쿠키/ 펫이 나올 때마다 쿠키 리롤을 2개 추가합니다." },
+            { id: 3, grade: "에픽", name: "약한 친구들도 모이면 강해지지!", effect: "C~A 등급 쿠키/ 펫이 나올 때마다 리롤을 2개 추가합니다." },
             { id: 4, grade: "에픽", name: "어떤 펫이 나올까?", effect: "자신이 원하는 펫을 미리 선택할 수 있고, 쿠키 리롤을 4개 추가 획득합니다." },
             { id: 5, grade: "에픽", name: "이제 우리에게 맡겨!", effect: "불꽃정령 쿠키, 망개떡맛 쿠키, 충무김밥맛 쿠키 중 하나를 이어달리기에서 달릴 수 있습니다." },
             { id: 6, grade: "에픽", name: "물질 만능 주의", effect: "이번 판에 획득한 코인의 4000배를 점수로 획득합니다." },
@@ -59,7 +58,7 @@
             { id: 14, grade: "고통", name: "백성을 위한 의적", effect: "마지막 판에 보물을 크라운, 꼬치, 돌도그를 제외하고 플레이합니다." },
             { id: 15, grade: "고통", name: "뱀파이어맛 쿠키의 야식 시간", effect: "이번 판에 보물을 인삼주, 홍삼주, 떡꼬치, 크레페 중에서만 골라야 합니다." },
             { id: 16, grade: "고통", name: "물약펫 표류기", effect: "이번 판에 물약펫이 나오면 강제 리롤을 합니다." },
-            { id: 17, grade: "고통", name: "레전드의 전문", effect: "이번 판에 레전더리 쿠키/펫을 선택 시 리롤이 10개가 차감됩니다." },
+            { id: 17, grade: "고통", name: "레전드의 절망", effect: "이번 판에 레전더리 쿠키/펫을 선택 시 리롤이 10개가 차감됩니다." },
             { id: 18, grade: "고통", name: "인생은 매콤하게!", effect: "이번 판에 무조건 열 대를 충돌해야 합니다." },
             { id: 19, grade: "고통", name: "뉴비는 빠져!", effect: "2024~2026년에 출시한 쿠키들이 나오면 강제 리롤합니다." },
             { id: 20, grade: "고통", name: "해적의 약탈", effect: "쿠키 리롤 5개 또는 버프 리롤 2개를 차감합니다." },
@@ -76,42 +75,42 @@
             { id: 31, grade: "고통", name: "나는 아픈 건 딱 질색이니까", effect: "보물을 불의 반지, 팬던트, 공주 반지로 제한합니다." },
             { id: 32, grade: "에픽", name: "멋진 한 판이었어!", effect: "순점 2억 돌파 시 쿠키 리롤 일곱 개, 버프 리롤 세 개를 추가로 얻고 5천만 점을 추가로 얻습니다." },
             { id: 33, grade: "레어", name: "산타의 작은 선물", effect: "5221만점이 즉시 추가됩니다." },
-            { id: 34, grade: "고통", name: "발렌타인데이", effect: "펫이 초코방울로 고정되거나 보물이 초콜릿 패키지로 고정됩니다." },
+            { id: 34, grade: "고통", name: "발렌타인데이", effect: "펫이 초코방울로 고정되거나 보물이 초콜릿 패키지로 고정됩니다. (선택 가능)" },
             { id: 35, grade: "레전드", name: "상큼한 점수 폭발!", effect: "3억점이 즉시 추가됩니다." },
-            { id: 36, grade: "죽음", name: "타락 천사", effect: "자력 보물 금지 및 선달이 악마맛 쿠키로 고정됩니다. 단, 리롤 7개 차감 시 해제 가능." },
+            { id: 36, grade: "죽음", name: "타락 천사", effect: "자력 보물 금지 및 선달이 악마맛 쿠키로 고정됩니다.단, 쿠키 리롤 또는 버프 리롤 7개를 차감 시 디버프가 해제됩니다." },
             { id: 37, grade: "고통", name: "드라우닝", effect: "펫이 꼬마 유령으로 고정됩니다." },
             { id: 38, grade: "에픽", name: "하늘이 무너져도 솟아날 구멍이 있다", effect: "구출 횟수당 2천만 점이 추가됩니다." },
             { id: 39, grade: "고통", name: "불타오르네", effect: "이번 판에 보물 한 칸을 비운 채로 플레이합니다." },
-            { id: 40, grade: "레어", name: "혀니수혀니 팬클럽", effect: "선달 초성 'ㅅ' 또는 'ㅎ' 쿠키 선택 시 점수 1.4배 증폭." },
+            { id: 40, grade: "레어", name: "혀니수혀니 팬클럽", effect: "선달로 이름 초성에 'ㅅ' 또는 'ㅎ'이 들어간 쿠키를 집으면 이번 판의 점수가 1.4배 증폭됩니다." },
             { id: 41, grade: "고통", name: "소음공해", effect: "이번 판 쿠키와 펫이 마카롱맛 쿠키와 캐스터네츠로 고정됩니다." },
-            { id: 42, grade: "레어", name: "앞만 보고 간다", effect: "장애물에 부딪힐 때마다 팔백만 점이 추가됩니다." },
+            { id: 42, grade: "레어", name: "앞만 보고 간다", effect: "장애물에 부딪힐 때마다 팔백만 점이 추가됩니다. (단, 체력이 깎일 때만 점수를 추가로 얻습니다.)" },
             { id: 43, grade: "고통", name: "그거그렇케하는것아닌대;", effect: "이번 판에 쿠키 리롤을 무조건 15개 이상 사용해야 합니다." },
-            { id: 44, grade: "고통", name: "신분증 위조", effect: "벌금으로 쿠키 리롤 7개를 차감합니다." },
+            { id: 44, grade: "고통", name: "신분증 위조", effect: "벌금으로 쿠키 리롤 7개를 차감합니다. 벌금을 못낼 경우 이번 판에 보유효과 사용이 금지됩니다." },
             { id: 45, grade: "레어", name: "유행의 선두자", effect: "선달이 용감한 쿠키로 고정되지만 2억 점을 즉시 획득합니다." },
             { id: 46, grade: "에픽", name: "물물교환", effect: "쿠키 리롤 한 개당 이천만 점으로 교환 가능합니다." },
             { id: 47, grade: "고통", name: "과욕불급(過慾不及)", effect: "쿠키 리롤을 열 개 이상 사용하면 목표점수가 1억 점 늘어납니다." },
-            { id: 48, grade: "죽음", name: "장수의 비결", effect: "선달 쿠앤크, 펫 브레인껌, 보물 장갑 3개 고정 및 리롤 5개 차감." },
+            { id: 48, grade: "죽음", name: "장수의 비결", effect: "선달이 쿠키앤크림 쿠키, 펫이 브레인껌, 보물이 장갑 세 개로 고정되고 쿠키 리롤 5개를 차감합니다." },
             { id: 49, grade: "레전드", name: "석유왕", effect: "쿠키 리롤 20개, 버프 리롤 5개를 추가 획득합니다." },
-            { id: 50, grade: "레어", name: "미스터리 박스", effect: "획득한 무지개 상자 개수만큼 5000만 점을 획득합니다." },
-            { id: 51, grade: "고통", name: "끝 없는 연습", effect: "선달 피겨여왕, 연기책 3개 고정. 보상으로 쿠키리롤 7개 획득." },
-            { id: 52, grade: "레어", name: "지치고 병든 나그네여", effect: "리롤 소진 시 리롤 7개 획득 및 이번 판 점수 1.1배 증폭." },
+            { id: 50, grade: "레어", name: "미스터리 박스", effect: "이번 판에 획득한 무지개 상자 개수만큼 5000만 점을 획득합니다." },
+            { id: 51, grade: "고통", name: "끝 없는 연습", effect: "선달이 피겨여왕맛 쿠키, 보물이 연기책 세 개로 고정됩니다. 하지만 보상으로 쿠키리롤 7개를 얻습니다." },
+            { id: 52, grade: "레어", name: "지치고 병든 나그네여", effect: "쿠키 리롤이 다 소진됐을 때 쿠키 리롤 7개를 얻고 이번 판 점수가 1.1배 증폭됩니다." },
             { id: 53, grade: "고통", name: "쉬고 싶어..", effect: "부활한 횟수만큼 목표 점수가 이천만 점 추가됩니다." },
-            { id: 54, grade: "레어", name: "원 플러스 원", effect: "버프 하나 더 추출 가능. 단, 추가 버프는 리롤 불가." },
+            { id: 54, grade: "레어", name: "원 플러스 원", effect: "원하는 때에 버프를 하나 더 뽑을 수 있습니다. 하지만 추가 버프는 버프 리롤을 돌릴 수 없습니다." },
             { id: 55, grade: "고통", name: "가까이 오지 마", effect: "보물이 이동속도 증가 보물로 제한됩니다." },
-            { id: 56, grade: "레어", name: "동에번쩍 서에번쩍", effect: "지옥 한 바퀴당 4000만 점 추가 (최대 2억)." },
+            { id: 56, grade: "레어", name: "동에번쩍 서에번쩍", effect: "지옥을 한 바퀴 돌 때마다 4000만 점이 추가됩니다. (최대 2억점)" },
             { id: 57, grade: "고통", name: "꽃가루를 날려", effect: "30초 간 눈을 감고 플레이합니다." },
-            { id: 58, grade: "에픽", name: "VIP 혜택", effect: "사용한 쿠키 리롤 수만큼 1000만점을 획득합니다." },
+            { id: 58, grade: "에픽", name: "VIP 혜택", effect: "사용한 쿠키 리롤 수만큼  1000만점을 획득합니다." },
             { id: 59, grade: "죽음", name: "뛰어! 누워!", effect: "점프키와 슬라이드키를 바꾸고 쿠키 리롤 3개를 차감합니다." },
             { id: 60, grade: "레어", name: "위치 전환", effect: "선이달 교체권을 1개 얻습니다." },
             { id: 61, grade: "고통", name: "감히 왕족을 능멸하는가!", effect: "펫이 초코왕방울로 고정됩니다." },
-            { id: 62, grade: "에픽", name: "차원 이동", effect: "쿠키/버프 리롤 3개 추가 및 원하는 에피소드에서 달리기 가능." }
+            { id: 62, grade: "에픽", name: "차원 이동", effect: "쿠키/버프 리롤이 3개씩 추가되며 이번 판을 원하는 에피소드에서 달릴 수 있습니다." }
         ];
 
         const order = ["로얄-레전드", "레전드", "에픽", "레어", "고통", "죽음", "지옥"];
         const container = document.getElementById('container');
 
         order.forEach(grade => {
-            const filtered = cards.filter(c => c.grade === grade);
+            const filtered = cards.filter(c => c.grade === (grade === "로얄-레전드" ? "로얄 레전드" : grade));
             if (filtered.length > 0) {
                 const title = document.createElement('div');
                 title.className = 'section-title';
@@ -123,9 +122,8 @@
                 
                 filtered.forEach(card => {
                     const div = document.createElement('div');
-                    div.className = `card ${card.grade}`;
+                    div.className = `card ${grade}`;
                     
-                    // 가람님 깃허브 특성 반영: .png.png를 먼저 찾고 실패 시 .png 시도
                     div.innerHTML = `
                         <div style="font-size: 0.8rem; margin-bottom: 8px; color: #888;">[${card.grade}]</div>
                         <img src="${card.id}.png.png" onerror="this.src='${card.id}.png';">
